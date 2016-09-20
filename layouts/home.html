@@ -1,0 +1,24 @@
+{{>header}}
+
+<div class="row">
+  {{#each pagination.files}}
+    {{#ifNth @index 3}}
+      <div style="clear:both"></div></div><div class="row">
+    {{/ifNth}}
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <h3>{{this.date}}</h3>
+      <h2><a href="{{this.paths.href}}">{{this.title}}</a></h2>
+      <article>{{#truncate this.excerpt 255}}{{/truncate}}</article>
+    </div>
+  {{/each}}
+  <div style="clear:both"></div>
+</div>
+
+{{#if pagination.previous}}
+  <a href="/{{{pagination.previous.path}}}">Previous</a>
+{{/if}}
+
+{{#if pagination.next}}
+  <a href="/{{{pagination.next.path}}}">Next</a>
+{{/if}}
+{{>footer}}

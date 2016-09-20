@@ -1,0 +1,116 @@
+{
+	"source": "src",
+	"destination": "build",
+	"metadata": {
+		"site": {
+			"title": "g0blin Research",
+			"url": "https://g0blin.co.uk",
+			"author": "James Hooker <research@g0blin.co.uk>"
+		}
+	},
+	"plugins": {
+		"metalsmith-drafts": true,
+    "metalsmith-markdown": true,
+		"metalsmith-date-formatter": {
+			"format": "YYYY-MM-DD"
+		},
+		"metalsmith-paths": {
+      "property": "paths",
+      "directoryIndex": "index.html"
+    },
+		"metalsmith-in-place": {
+      "engine": "handlebars",
+      "partials": "partials"
+    },
+		"metalsmith-register-helpers": {
+			"directory": "handlebars-helpers"
+		},
+		"metalsmith-collections": {
+			"blog": {
+				"sortBy": "date",
+				"reverse": true,
+				"metadata": {
+					"layout": "blog.html"
+				}
+			},
+			"research": {
+				"sortBy": "date",
+				"reverse": true,
+				"metadata": {
+					"layout": "research.html"
+				}
+			},
+			"all": {
+				"sortBy": "date",
+				"reverse": true
+			},
+			"error": {
+				"metadata": {
+					"layout": "error.html"
+				}
+			}
+		},
+		"metalsmith-collections-metadata": {
+			"blog": {
+				"layout": "blog.html"
+			},
+			"research": {
+				"layout": "research.html"
+			},
+			"error": {
+				"layout": "error.html"
+			}
+		},
+		"metalsmith-pagination": {
+			"collections.all": {
+				"perPage": 9,
+				"layout": "home.html",
+				"first": "index.html",
+				"path": "page/:num/index.html"
+			}
+		},
+		"metalsmith-autotoc":{
+			"selector": "h2, h3, h4"
+		},
+		"metalsmith-excerpts": true,
+		"metalsmith-layouts": {
+			"engine": "handlebars"
+		},
+		"metalsmith-less": {
+			"pattern": "**/*.less",
+			"render": {
+				"paths": [
+					"build/css"
+				]
+			}
+		},
+		"metalsmith-assets": {
+			"source": "./assets",
+			"destination": "."
+		},
+		"metalsmith-convert": [
+			{
+	      "src": "**/*.png",
+	      "target": "png",
+	      "resize": {"width": 320, "height": 240, "resizeStyle": "aspectfit"},
+	      "nameFormat": "%b_thumb%e"
+	    },
+			{
+				"src": "**/*.jpg",
+				"target": "png",
+				"resize": {"width": 320, "height": 240, "resizeStyle": "aspectfit"},
+				"nameFormat": "%b_thumb%e"
+			},
+			{
+				"src": "**/*.gif",
+				"target": "png",
+				"resize": {"width": 320, "height": 240, "resizeStyle": "aspectfit"},
+				"nameFormat": "%b_thumb%e"
+			}
+		],
+		"metalsmith-feed": {
+			"collection": "all",
+			"limit": false
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{{>header}}
+
+<div class="row">
+  <div class="col-xs-12">
+    <article>
+      <h2>{{title}}</h2>
+      {{#if toc}}
+        <ol class="toc">
+        {{#each toc}}
+          <li><a href="#{{id}}">{{text}}</a></li>
+        {{/each}}
+        </ol>
+      {{/if}}
+      <p>{{{contents}}}</p>
+    </article>
+  </div>
+</div>
+
+{{>disqus}}
+{{>footer}}

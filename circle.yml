@@ -1,0 +1,18 @@
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install libmagick++-dev
+deployment:
+  prod:
+    branch: master
+    commands:
+      - npm start
+      - aws configure set preview.cloudfront true
+      - aws s3 sync build s3://g0blin.co.uk/ --delete
+      - aws cloudfront create-invalidation --distribution-id XXXXXXXXXXXXXX --paths "/*"
+machine:
+  node:
+    version: 0.12.7
+general:
+  branches:
+    only:
+      - master

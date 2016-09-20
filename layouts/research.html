@@ -1,0 +1,48 @@
+{{>header}}
+<div class="row">
+  <div class="col-xs-12">
+    <article>
+      <h2>{{title}}</h2>
+
+      <p>{{{contents}}}</p>
+
+      <h3>Homepage</h3>
+      <p><a href="{{homepage}}">{{homepage}}</a></p>
+
+      <h3>CVSS Score</h3>
+      <p>{{cvss_score}}</p>
+
+      <h3>CSSS Vector</h3>
+      <p>{{cvss_vector}}</p>
+
+      <h3>Attack Scope</h3>
+      <p>{{attack_scope}}</p>
+
+      <h3>Authorization Required</h3>
+      <p>{{authorization_required}}</p>
+
+      <h3>Mitigation</h3>
+      <p>{{mitigation}}</p>
+
+      {{#if poc}}
+        <h3>Proof of Concept</h3>
+        {{#each poc}}
+          <p>{{{desc}}}</p>
+          <pre><code>{{text}}</code></pre>
+        {{/each}}
+      {{/if}}
+
+      {{#if timeline}}
+        <h3>Timeline</h3>
+        <ul class="list-unstyled">
+          {{#each timeline}}
+            <li>{{date}}: {{{text}}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </article>
+  </div>
+</div>
+
+{{>disqus}}
+{{>footer}}
